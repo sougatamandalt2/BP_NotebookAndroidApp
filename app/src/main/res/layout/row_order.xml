@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="3dp"
+    app:cardCornerRadius="5dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape03"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_orderFor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/person_black"
+            android:drawablePadding="10dp"
+            android:fontFamily="monospace"
+            android:text="Myself"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+             />
+
+        <TextView
+            android:id="@+id/tv_orderTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_orderDate"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="2dp"
+            android:drawableStart="@drawable/time"
+            android:drawablePadding="10dp"
+            android:fontFamily="monospace"
+            android:text=" 12 : 30 "
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_orderDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="DD/MM/YYYY"
+            android:drawableStart="@drawable/date"
+            android:drawablePadding="10dp"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_sys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_orderFor"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Systolic  :  120"
+            android:textSize="20dp"
+             />
+
+        <TextView
+            android:id="@+id/tv_dia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_sys"
+            android:layout_marginTop="3dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Diatolic  :   80"
+            android:textSize="20dp"
+             />
+
+
+        <TextView
+            android:id="@+id/tv_Status"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_orderTime"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape03"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:text="Ground_1"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

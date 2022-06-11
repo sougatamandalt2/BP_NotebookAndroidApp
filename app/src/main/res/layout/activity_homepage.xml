@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomepageActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_heading"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/teal_700">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="Homepage"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/person_black" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/bp_records"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@id/rl_heading"
+        android:background="#C6DFDD"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:text="Blood Pressure Records (User-1)"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+<!--    <com.google.android.material.switchmaterial.SwitchMaterial-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_alignRight="@id/bp_recod"-->
+<!--        android:layout_below="@id/rl_heading"-->
+<!--        android:checked="true"-->
+<!--        android:background="@color/teal_200"-->
+<!--        android:text="Switch User : "/>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:weightSum="2"-->
+<!--        android:layout_marginStart="6dp"-->
+<!--        android:layout_marginEnd="6dp"-->
+<!--        android:layout_below="@id/bp_recod"-->
+<!--        android:id="@+id/user">-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:textStyle="bold"-->
+<!--            android:fontFamily="monospace"-->
+<!--            android:textSize="20dp"-->
+<!--            android:background="@color/teal_200"-->
+<!--            android:text="User-1"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textStyle="bold"-->
+<!--            android:fontFamily="monospace"-->
+<!--            android:textSize="20dp"-->
+<!--            android:gravity="center"-->
+<!--            android:background="#EFFAF9"-->
+<!--            android:text="User-2"/>-->
+<!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_below="@id/bp_records"
+        android:orientation="horizontal"
+        android:id="@+id/ll">
+<!--        <com.google.android.material.button.MaterialButtonToggleGroup-->
+<!--            android:id="@+id/toggleButton"-->
+<!--            app:selectionRequired="true"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/rl_heading"-->
+<!--            android:layout_marginRight="1dp"-->
+<!--            android:layout_marginLeft="1dp">-->
+
+            <TextView
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/shape05"
+            android:padding="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="2.5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="23dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textFontWeight="@integer/google_play_services_version"
+            android:text="User 1" />
+            <TextView
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="User 2"
+                android:gravity="center"
+                android:background="@drawable/shape03"
+                android:padding="5dp"
+                android:layout_marginLeft="2.5dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="5dp"
+                android:textSize="23dp"
+                android:textFontWeight="@integer/google_play_services_version"
+                android:fontFamily="sans-serif-condensed-medium"
+                />
+
+<!--        </com.google.android.material.button.MaterialButtonToggleGroup>-->
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll"
+        >
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        app:reverseLayout="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:stackFromEnd="true"
+        tools:listitem="@layout/row_order"
+        />
+    </FrameLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="Order History"
+        app:srcCompat="@drawable/add" />
+
+
+
+</RelativeLayout>
