@@ -46,61 +46,16 @@
         android:text="Blood Pressure Records (User-1)"
         android:textSize="20dp"
         android:textStyle="bold" />
-<!--    <com.google.android.material.switchmaterial.SwitchMaterial-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginRight="10dp"-->
-<!--        android:layout_alignRight="@id/bp_recod"-->
-<!--        android:layout_below="@id/rl_heading"-->
-<!--        android:checked="true"-->
-<!--        android:background="@color/teal_200"-->
-<!--        android:text="Switch User : "/>-->
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:weightSum="2"-->
-<!--        android:layout_marginStart="6dp"-->
-<!--        android:layout_marginEnd="6dp"-->
-<!--        android:layout_below="@id/bp_recod"-->
-<!--        android:id="@+id/user">-->
-<!--        <TextView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:gravity="center"-->
-<!--            android:textStyle="bold"-->
-<!--            android:fontFamily="monospace"-->
-<!--            android:textSize="20dp"-->
-<!--            android:background="@color/teal_200"-->
-<!--            android:text="User-1"/>-->
-<!--        <TextView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:textStyle="bold"-->
-<!--            android:fontFamily="monospace"-->
-<!--            android:textSize="20dp"-->
-<!--            android:gravity="center"-->
-<!--            android:background="#EFFAF9"-->
-<!--            android:text="User-2"/>-->
-<!--    </LinearLayout>-->
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
         android:layout_below="@id/bp_records"
         android:orientation="horizontal"
-        android:id="@+id/ll">
-<!--        <com.google.android.material.button.MaterialButtonToggleGroup-->
-<!--            android:id="@+id/toggleButton"-->
-<!--            app:selectionRequired="true"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/rl_heading"-->
-<!--            android:layout_marginRight="1dp"-->
-<!--            android:layout_marginLeft="1dp">-->
+        >
 
             <TextView
             android:id="@+id/button1"
@@ -115,7 +70,6 @@
             android:layout_marginTop="5dp"
             android:textSize="23dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:textFontWeight="@integer/google_play_services_version"
             android:text="User 1" />
             <TextView
                 android:id="@+id/button2"
@@ -130,11 +84,9 @@
                 android:layout_marginRight="3dp"
                 android:layout_marginTop="5dp"
                 android:textSize="23dp"
-                android:textFontWeight="@integer/google_play_services_version"
                 android:fontFamily="sans-serif-condensed-medium"
                 />
 
-<!--        </com.google.android.material.button.MaterialButtonToggleGroup>-->
     </LinearLayout>
 
     <FrameLayout

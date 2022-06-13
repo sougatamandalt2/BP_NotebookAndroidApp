@@ -72,7 +72,7 @@ public class ArrayAdapterClass extends RecyclerView.Adapter<ArrayAdapterClass.Ho
             holder.tv_sys.setTextColor(context.getResources().getColor(R.color.green));
         }
 
-        if(Integer.parseInt(dia)>95){
+        if(Integer.parseInt(dia)>90){
             holder.tv_dia.setTextColor(context.getResources().getColor(R.color.red));
         }
         else if(Integer.parseInt(dia)<75){

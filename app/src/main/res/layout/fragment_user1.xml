@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.User1Fragment">
+    tools:context=".Fragments.User1Fragment"
+    android:background="@color/white">
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/rv_f1"
@@ -15,6 +16,16 @@
        app:stackFromEnd="true"
        android:layout_marginTop="2dp"
        tools:listitem="@layout/row_order"/>
+   <TextView
+       android:id="@+id/empty_view"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:layout_marginTop="200dp"
+       android:visibility="gone"
+       android:textSize="22dp"
+       android:fontFamily="monospace"
+       android:text="No Data Available for User1" />
 
 
 </FrameLayout>

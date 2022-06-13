@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.mybpnotebook.ArrayAdapterClass;
 import com.example.mybpnotebook.HomepageActivity;
@@ -31,6 +32,7 @@ public class User1Fragment extends Fragment {
     ArrayList<modelRecord> bpRecord;
     ArrayAdapterClass arrayAdapter;
     RecyclerView rv_f1;
+    TextView empty_view;
 
     public User1Fragment() {
         // Required empty public constructor
@@ -44,50 +46,41 @@ public class User1Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user1, container, false);
 
         rv_f1=view.findViewById(R.id.rv_f1);
+        empty_view=view.findViewById(R.id.empty_view);
         progressDialog=new ProgressDialog(getContext());
 
         bpRecord=new ArrayList<>();
-        progressDialog.setMessage("Loading Your Data");
+        progressDialog.setMessage("Loading User1 Data ______");
+        progressDialog.setIndeterminate(true);
         progressDialog.show();
 
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Users");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                bpRecord.clear();
-                for(DataSnapshot ds:snapshot.getChildren()){
-                    String uid=""+ds.getRef().getKey();
+        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child("User1");
+        ref.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            for(DataSnapshot dss:snapshot.getChildren()){
+                                modelRecord modelRecord=dss.getValue(modelRecord.class);
+                                bpRecord.add(modelRecord);
+                            }
+                            arrayAdapter=new ArrayAdapterClass(getContext(), bpRecord);
+                            rv_f1.setAdapter(arrayAdapter);
 
-                    DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("User1");
-                    ref.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid())
-                            .addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if(snapshot.exists()){
-                                        for(DataSnapshot dss:snapshot.getChildren()){
-                                            modelRecord modelRecord=dss.getValue(modelRecord.class);
-                                            bpRecord.add(modelRecord);
-                                            progressDialog.dismiss();
-                                        }
-                                        arrayAdapter=new ArrayAdapterClass(getContext(), bpRecord);
-                                        rv_f1.setAdapter(arrayAdapter);
+                        }
+                        else {
+                            empty_view.setVisibility(View.VISIBLE);
+                        }
+                    }
 
-                                    }
-                                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+            progressDialog.dismiss();
 
-                                }
-                            });
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         return view;
     }

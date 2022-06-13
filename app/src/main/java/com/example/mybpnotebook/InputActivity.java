@@ -240,19 +240,19 @@ public class InputActivity extends AppCompatActivity {
             return;
         }
 
-        if(a+b>190 && a+b<=210){
+        if(a+b>=185 && a+b<215){
             status="Normal";
         }
-        else if(a+b>= 240){
+        else if(a+b>=250){
             status="Very High";
         }
-        else if (a+b>210 && a+b<240){
+        else if (a+b>=215 && a+b<250){
             status="High";
         }
-        else if(a+b<= 190 && a+b>=175){
+        else if(a+b< 185 && a+b>170){
             status="Low";
         }
-        else if (a+b<175){
+        else if (a+b<=170){
             status="Very Low";
         }
     }

@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private SignInButton btnSignInWithGoogle;
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
-    public static final int RC_SIGN_IN = 321;
-    private String name,email,image,imagesmall;
+    public static final int RC_SIGN_IN = 100;
+    private String name,email,image;
     ProgressDialog progressDialog;
 
     @Override
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(LoginActivity.this, gso);
     }
 
     private void signIn() {
@@ -120,9 +120,9 @@ public class LoginActivity extends AppCompatActivity {
                 image = account.getPhotoUrl().toString();
 
                 //create sharedPreference to store user data when user signs in successfully
-                SharedPreferences.Editor editor = getApplicationContext()
-                        .getSharedPreferences("MyPrefs",MODE_PRIVATE)
-                        .edit();
+//                SharedPreferences.Editor editor = getApplicationContext()
+//                        .getSharedPreferences("MyPrefs",MODE_PRIVATE)
+//                        .edit();
 //////                editor.putString("username", name);
 //////                editor.putString("useremail", email);
 //////                editor.putString("userPhoto", userPhoto);
@@ -148,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
     private void saveFirebaseData() {
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");
-        progressDialog.setMessage("Saving info....");
+        progressDialog.setMessage("Creating Your Account....");
         progressDialog.show();
         String timeStamp=""+System.currentTimeMillis();
 

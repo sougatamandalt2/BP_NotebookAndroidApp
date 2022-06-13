@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class HomepageActivity<onbackpressed> extends AppCompatActivity {
+public class HomepageActivity extends AppCompatActivity {
 
     FloatingActionButton floating_action_button;
     ImageView iv_profile;
@@ -43,7 +43,6 @@ public class HomepageActivity<onbackpressed> extends AppCompatActivity {
     ProgressDialog progressDialog;
     ArrayList<modelRecord> bpRecord;
     ArrayAdapterClass arrayAdapter;
-    FirebaseAuth mAuth;
 
 
     @Override
@@ -125,47 +124,32 @@ public class HomepageActivity<onbackpressed> extends AppCompatActivity {
 
     private void loadRecord() {
         bpRecord=new ArrayList<>();
-        progressDialog.setMessage("Loading Your Data");
+        progressDialog.setMessage("Loading User1 Data ______");
+        progressDialog.setIndeterminate(true);
         progressDialog.show();
+        DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child("User1");
+        ref.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            bpRecord.clear();
+                            for(DataSnapshot dss:snapshot.getChildren()){
+                                modelRecord modelRecord=dss.getValue(modelRecord.class);
+                                bpRecord.add(modelRecord);
+                            }
+                            arrayAdapter=new ArrayAdapterClass(HomepageActivity.this, bpRecord);
+                            rv.setAdapter(arrayAdapter);
 
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Users");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                bpRecord.clear();
-                for(DataSnapshot ds:snapshot.getChildren()){
-                    String uid=""+ds.getRef().getKey();
+                        }
+                    }
 
-                    DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("User1");
-                    ref.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid())
-                            .addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if(snapshot.exists()){
-                                        for(DataSnapshot dss:snapshot.getChildren()){
-                                            modelRecord modelRecord=dss.getValue(modelRecord.class);
-                                            bpRecord.add(modelRecord);
-                                            progressDialog.dismiss();
-                                        }
-                                        arrayAdapter=new ArrayAdapterClass(HomepageActivity.this, bpRecord);
-                                        rv.setAdapter(arrayAdapter);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                    }
+                });
+        progressDialog.dismiss();
     }
 
 
